@@ -5,20 +5,26 @@ const StyledLink = styled.div`
     margin: 0;
     color: #b5a551;
     display: inline-block;
-    padding: 10px 15px;
+    padding: 8px 15px;
+    transition: .5s;
         
     &:hover {
         color: white;
-        transition: .5s;
         background-color: red;
         cursor: pointer;
     }
 `;
 
 class Link extends React.Component {
+    state = {
+        text: "ссылка"
+    };
+
     render() {
         return (
-            <StyledLink onClick={this.handleClick}>
+            <StyledLink onClick={() => {
+                this.setState({text: "Сылка новая"});
+            }}>
                 {this.props.text}
             </StyledLink>
         )

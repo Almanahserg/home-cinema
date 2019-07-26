@@ -1,6 +1,6 @@
 import React from 'react';
-import Link from './Link';
 import styled from 'styled-components';
+import { Link } from "react-router-dom";
 
 const List = styled.ul`
     margin: 0;
@@ -10,16 +10,38 @@ const List = styled.ul`
     }
 `;
 
-class Menu extends React.Component {
-    render() {
-        return (
-            <List>
-                <li><Link text="Главная"/></li>
-                <li><Link text="Фильмы"/></li>
-                <li><Link text="Расписание"/></li>
-            </List>
-        )
+const StyledLink = styled.div`
+    margin: 0;
+    color: #b5a551;
+    display: inline-block;
+    padding: 14px 15px;
+    transition: .5s;
+        
+    &:hover {
+        color: white;
+        background-color: red;
+        cursor: pointer;
     }
-}
+`;
 
-export default Menu;
+export const Menu = () => {
+    return (
+        <List>
+            <li>
+                <Link to='/movies'>
+                    <StyledLink>Фильмы</StyledLink>
+                </Link>
+            </li>
+            <li>
+                <Link to='/counter'>
+                    <StyledLink>Расписание</StyledLink>
+                </Link>
+            </li>
+            <li>
+                <Link to='/counter'>
+                    <StyledLink>Контакты</StyledLink>
+                </Link>
+            </li>
+        </List>
+    )
+};
