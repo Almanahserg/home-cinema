@@ -1,0 +1,12 @@
+export const URL_MOVIES = 'http://subdomain.entony.fs.a-level.com.ua/api/movie';
+export const URL_ROOMS = 'http://subdomain.entony.fs.a-level.com.ua/api/movie/room';
+export const URL_SESSIONS = 'http://subdomain.entony.fs.a-level.com.ua/api/movie/session';
+export const URL_SPACES = 'http://subdomain.entony.fs.a-level.com.ua/api/movie/space';
+export const LOADING = 'LOADING';
+export const MOVIES_RESOLVE = 'MOVIE_RESOLVE';
+export const MOVIES_REJECT = 'MOVIE_REJECT';
+export const ROOMS_RESOLVE = 'ROOMS_RESOLVE';
+export const ROOMS_REJECT = 'ROOMS_REJECT';
+export const SESSIONS_RESOLVE = 'SESSIONS_RESOLVE';
+export const SESSIONS_REJECT = 'SESSIONS_REJECT';
+export const MONTHS_RU = ['Январь','Февраль','Март','Апрель','Май','Июнь','Июль','Август','Сентябрь','Октябрь','Ноябрь','Декабрь'];
