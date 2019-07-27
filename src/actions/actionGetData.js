@@ -8,13 +8,16 @@ import {
     ROOMS_RESOLVE,
     SESSIONS_REJECT,
     SESSIONS_RESOLVE,
-    LOADING
+    SPACES_REJECT,
+    SPACES_RESOLVE,
+    LOADING, URL_SPACES
 } from '../constants';
 import axios from 'axios';
 
 const movies = [MOVIES_RESOLVE, MOVIES_REJECT];
 const rooms = [ROOMS_RESOLVE, ROOMS_REJECT];
 const sessions = [SESSIONS_RESOLVE, SESSIONS_REJECT];
+const spaces = [SPACES_REJECT, SPACES_RESOLVE];
 
 export const actionPanding = () => ({type: LOADING});
 export const actionResolve = (payload, array) => ({type: array[0], payload});
@@ -60,6 +63,22 @@ export const actionGetSessions = () => {
             } )
             .catch( (error) => {
                 dispatch( actionReject(sessions) );
+                console.error( error )
+            } )
+    }
+};
+
+export const actionGetSpaces = () => {
+    return dispatch => {
+        dispatch( actionPanding() );
+
+        axios.get( URL_SPACES )
+            .then( ({data}) => {
+                console.log(data);
+                dispatch( actionResolve( data, spaces ) )
+            } )
+            .catch( (error) => {
+                dispatch( actionReject(spaces) );
                 console.error( error )
             } )
     }

@@ -1,20 +1,20 @@
 import React from 'react';
-import Modal from 'react-bootstrap/Modal'
 
 import styled from 'styled-components';
 
-import {UserIcon} from '../components/UserIcon'
-import {COLOR, UserInfo} from '../store/index';
-
-import Login from './Login'
-
+import { UserIcon } from '../components/UserIcon'
+import { UserInfo } from '../store/index';
+import LogInModal from "./LogInModal";
 
 const StyledLink = styled.div`
     margin: 0;
     color: #b5a551;
     display: inline-block;
-    padding: 8px 15px;
+    padding: 14px 15px;
     transition: .5s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
         
     &:hover {
         color: white;
@@ -25,53 +25,35 @@ const StyledLink = styled.div`
 
 
 class Authorization extends React.Component {
-    constructor(props) {
-        super(props);
+    state = {
+        showModal: false,
+        color: "#b5a551"
+    };
 
-        this.state = {
-            show: false,
-            color: COLOR.gold
-        };
+    toggleModal = () => {
+        this.setState( {showModal: !this.state.showModal} );
+    };
 
-        this.handleShow = this.handleShow.bind(this);
-        this.handleClose = this.handleClose.bind(this);
-        this.changeIconColorToWhite = this.changeIconColorToWhite.bind(this);
-        this.changeIconColorToGold = this.changeIconColorToGold.bind(this);
-    }
 
-    handleClose() {
-        this.setState({show: false});
-    }
+    changeIconColorToWhite = () => {
+        this.setState( {color: 'white'} )
+    };
 
-    handleShow() {
-        this.setState({show: true});
-    }
-
-    changeIconColorToWhite() {
-            this.setState({color: COLOR.white})
-    }
-
-    changeIconColorToGold() {
-            this.setState({color: COLOR.gold})
-    }
+    changeIconColorToGold = () => {
+        this.setState( {color: "#b5a551"} )
+    };
 
     render() {
         return (
             <div>
-                <StyledLink onMouseOver={this.changeIconColorToWhite} onMouseLeave={this.changeIconColorToGold}>
-                    <UserIcon color={this.state.color}/>
-                    {UserInfo.label}
+                <StyledLink
+                    onMouseOver={ this.changeIconColorToWhite }
+                    onMouseLeave={ this.changeIconColorToGold }
+                    onClick={ this.toggleModal }>
+                    <UserIcon color={ this.state.color }/>
+                    { UserInfo.label }
                 </StyledLink>
-
-                <Modal show={this.state.show} onHide={this.handleClose} className='modal-dialog modal-sm'>
-                    <Modal.Header closeButton>
-                        <Modal.Title>Авторизация</Modal.Title>
-                    </Modal.Header>
-                    <Modal.Body><Login/></Modal.Body>
-                    <Modal.Footer>
-                        <button onClick={this.handleClose}>Войти</button>
-                    </Modal.Footer>
-                </Modal>
+                { this.state.showModal && <LogInModal hideModal={ this.toggleModal }/> }
             </div>
         )
     }

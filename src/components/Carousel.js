@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import {ReactComponent as ArrowRight} from '../imgs/arrowRightCarousel.svg';
 
-const Carousel = styled.div`
+const CarouselTag = styled.div`
     height: 400px;
 `;
 
@@ -52,26 +52,14 @@ const List = ({movie, params}) => {
 };
 
 
-export const ListFilms = () => {
+export const Carousel = () => {
     let counter = 0;
 
     return (
-        <Carousel>
+        <CarouselTag>
             <Gallery>
-                <ul>
-                    {films.map((item, index) =>
-                        <List
-                            key={item.id}
-                            movie={item}
-                            params={{
-                                index: index,
-                                counter: (index <= 1) ? counter++: counter--
-                            }}
-                        />
-                    )}
-                </ul>
+                Тут будет карусель!
             </Gallery>
-            <ArrowRight onClick={() => console.log(counter++)}/>
-        </Carousel>
+        </CarouselTag>
     )
 };

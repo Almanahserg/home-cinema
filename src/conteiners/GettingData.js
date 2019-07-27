@@ -3,9 +3,9 @@ import { connect } from 'react-redux';
 import {
     actionGetMovies,
     actionGetRooms,
-    actionGetSessions
+    actionGetSessions,
+    actionGetSpaces
 } from '../actions/actionGetData';
-import Header from "../components/Header";
 import ListFilms from '../components/ListFilms';
 
 class GetData extends React.Component {
@@ -13,12 +13,12 @@ class GetData extends React.Component {
         this.props.getMovies();
         this.props.getRooms();
         this.props.getSessions();
+        this.props.getSpaces();
     }
 
     render() {
         return (
             <div>
-                <Header/>
                 <ListFilms/>
             </div>
         );
@@ -29,13 +29,15 @@ let mapStateToProps = (state) => ({
     error: state.cinemaData.error,
     movies: state.cinemaData.movies,
     rooms: state.cinemaData.rooms,
-    sessions: state.cinemaData.sessions
+    sessions: state.cinemaData.sessions,
+    spaces: state.cinemaData.spaces
 });
 
 let mapDispatchToProps = {
     getMovies: actionGetMovies,
     getRooms: actionGetRooms,
-    getSessions: actionGetSessions
+    getSessions: actionGetSessions,
+    getSpaces: actionGetSpaces
 };
 
 export const Data = connect( mapStateToProps, mapDispatchToProps )( GetData );
