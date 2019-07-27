@@ -9,4 +9,6 @@ export const ROOMS_RESOLVE = 'ROOMS_RESOLVE';
 export const ROOMS_REJECT = 'ROOMS_REJECT';
 export const SESSIONS_RESOLVE = 'SESSIONS_RESOLVE';
 export const SESSIONS_REJECT = 'SESSIONS_REJECT';
+export const SPACES_RESOLVE = 'SPACES_RESOLVE';
+export const SPACES_REJECT = 'SPACES_REJECT';
 export const MONTHS_RU = ['Январь','Февраль','Март','Апрель','Май','Июнь','Июль','Август','Сентябрь','Октябрь','Ноябрь','Декабрь'];

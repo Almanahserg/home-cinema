@@ -9,8 +9,7 @@ export let store = createStore( rootReducer, composeEnchancers(applyMiddleware( 
 export const history = createBrowserHistory();
 
 export const COLOR = {
-    gold: '#b5a551',
-    white: '#e2e2e2'
+    gold: '#b5a551'
 };
 
 export let Menu = {

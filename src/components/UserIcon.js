@@ -6,7 +6,7 @@ const Svg = styled.svg`
     height: 24px;
     xmlns: "http://www.w3.org/2000/svg";
     margin-right: 5px;
-    margin-top: -10px;
+    margin-top: -6px;
     ellipse{
         transition: .5s;
     } 
