@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import styled from 'styled-components';
 
 const ModalTag = styled.div`
-    position: absolute;
+    position: fixed;
     background: rgba(0, 0, 0, .7);
     top: 0;
     left: 0;

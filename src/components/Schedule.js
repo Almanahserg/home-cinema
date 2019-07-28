@@ -2,6 +2,7 @@ import React from 'react';
 import { store } from "../store";
 import styled from 'styled-components';
 import { MONTHS_RU } from '../constants';
+import Spaces from "./Spaces";
 
 const Div = styled.div`
     margin: 5px 0;
@@ -27,7 +28,8 @@ class Schedule extends React.Component {
         days: [],
         dayActive: 0,
         times: [],
-        ids: []
+        ids: [],
+        showModal: false
     };
 
     getScheduleByMovieId = () => {
@@ -88,11 +90,18 @@ class Schedule extends React.Component {
                 item._id === this.state.ids[index]
             )
         });
+
+        this.toggleModal();
+
         console.log( `
         MovieId: ${ this.props.movieId }
         ID сеанса: ${this.state.ids[index]}
         Дата сеанса: ${new Date(session[0].date).toLocaleString()}
         ` )
+    };
+
+    toggleModal = () => {
+        this.setState( {showModal: !this.state.showModal} );
     };
 
     componentWillMount() {
@@ -143,6 +152,7 @@ class Schedule extends React.Component {
                             </Div>
                         )
                     } ) }
+                    { this.state.showModal && <Spaces hideModal={ this.toggleModal }/> }
                 </div>
 
             </div>
