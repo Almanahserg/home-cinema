@@ -1,7 +1,5 @@
 import React from 'react';
-
 import styled from 'styled-components';
-
 import { UserIcon } from '../components/UserIcon'
 import { UserInfo } from '../store/index';
 import LogInModal from "./LogInModal";

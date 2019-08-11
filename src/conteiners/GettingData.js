@@ -2,24 +2,24 @@ import React from 'react';
 import { connect } from 'react-redux';
 import {
     actionGetMovies,
-    actionGetRooms,
-    actionGetSessions,
-    actionGetSpaces
+    actionGetSessions
 } from '../actions/actionGetData';
-import ListFilms from '../components/ListFilms';
+import { Cinema } from '../routes/index';
 
 class GetData extends React.Component {
-    componentDidMount() {
+    componentWillMount() {
         this.props.getMovies();
-        this.props.getRooms();
         this.props.getSessions();
-        this.props.getSpaces();
     }
 
     render() {
+        const { movies, sessions} = this.props;
         return (
             <div>
-                <ListFilms/>
+                <Cinema
+                    movies={movies}
+                    sessions={sessions}
+                />
             </div>
         );
     }
@@ -28,16 +28,12 @@ class GetData extends React.Component {
 let mapStateToProps = (state) => ({
     error: state.cinemaData.error,
     movies: state.cinemaData.movies,
-    rooms: state.cinemaData.rooms,
-    sessions: state.cinemaData.sessions,
-    spaces: state.cinemaData.spaces
+    sessions: state.cinemaData.sessions
 });
 
 let mapDispatchToProps = {
     getMovies: actionGetMovies,
-    getRooms: actionGetRooms,
-    getSessions: actionGetSessions,
-    getSpaces: actionGetSpaces
+    getSessions: actionGetSessions
 };
 
 export const Data = connect( mapStateToProps, mapDispatchToProps )( GetData );

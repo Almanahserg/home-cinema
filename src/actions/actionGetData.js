@@ -68,14 +68,13 @@ export const actionGetSessions = () => {
     }
 };
 
-export const actionGetSpaces = () => {
+export const actionGetSpaces = (params) => {
     return dispatch => {
         dispatch( actionPanding() );
 
-        axios.get( URL_SPACES )
+        axios.get(`${URL_SPACES}?session=${params}` )
             .then( ({data}) => {
-                console.log(data);
-                dispatch( actionResolve( data.space, spaces ) )
+                dispatch( actionResolve( data, spaces ) )
             } )
             .catch( (error) => {
                 dispatch( actionReject(spaces) );

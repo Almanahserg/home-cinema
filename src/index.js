@@ -2,14 +2,14 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { store } from './store';
 import { Provider } from 'react-redux';
-import { Main } from './routes';
 import './App.css';
 import './index.css';
+import { Data } from "./conteiners/GettingData";
 
 ReactDOM.render(
     <Provider store={ store }>
         <div className="App">
-            <Main/>
+            <Data/>
         </div>
     </Provider>,
 

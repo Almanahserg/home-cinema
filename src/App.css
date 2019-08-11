@@ -2,11 +2,9 @@
     outline: none;
     margin: 0;
     padding: 0;
-
 }
 
-html,
-body {
+html, body {
     height: 100%;
 }
 
@@ -19,4 +17,24 @@ body {
 header {
     background-color: #213245;
     box-shadow: 0 0 5px black;
+    height: 45px;
+}
+
+.main {
+    min-height: calc(100vh - 77px);
+    border: 1px solid rgba(0, 0, 0, 0);
+}
+
+footer {
+    height: 30px;
+}
+
+p {
+    margin: 10px 0;
+    color: white;
+}
+
+hr {
+    border: none;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 }
