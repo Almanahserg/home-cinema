@@ -1,9 +1,9 @@
-import React from 'react';
+import React, { useState } from 'react';
 import logo from '../imgs/logo.png'
 import { Menu } from './Menu'
-
 import styled from 'styled-components';
 import Authorization from "./Authorization";
+import { Link } from "react-router-dom";
 
 const Img = styled.img`
     height: 40px;
@@ -19,18 +19,20 @@ const Container = styled.div`
     margin: auto;
 `;
 
-class Header extends React.Component {
-    render() {
-        return (
-            <header>
-                <Container>
+const Header = () => {
+    const [activeMenu, setActiveMenu] = useState( 0 );
+
+    return (
+        <header>
+            <Container>
+                <Link to={ '/' } onClick={() => setActiveMenu (0)}>
                     <Img src={ logo } alt="logo"/>
-                    <Menu/>
-                    <Authorization/>
-                </Container>
-            </header>
-        )
-    }
-}
+                </Link>
+                <Menu activeMenu={activeMenu} changeActiveMenu={setActiveMenu}/>
+                <Authorization/>
+            </Container>
+        </header>
+    )
+};
 
 export default Header;

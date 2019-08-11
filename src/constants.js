@@ -1,7 +1,7 @@
 export const URL_MOVIES = 'http://subdomain.entony.fs.a-level.com.ua/api/movie';
 export const URL_ROOMS = 'http://subdomain.entony.fs.a-level.com.ua/api/movie/room';
 export const URL_SESSIONS = 'http://subdomain.entony.fs.a-level.com.ua/api/movie/session';
-export const URL_SPACES = 'http://subdomain.entony.fs.a-level.com.ua/api/movie/space';
+export const URL_SPACES = 'http://subdomain.entony.fs.a-level.com.ua/api/movie/space-shadow';
 export const LOADING = 'LOADING';
 export const MOVIES_RESOLVE = 'MOVIE_RESOLVE';
 export const MOVIES_REJECT = 'MOVIE_REJECT';
