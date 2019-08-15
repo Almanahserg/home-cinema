@@ -4,7 +4,7 @@ import { actionGetSpaces } from '../actions/actionGetData';
 import { Spaces } from '../components/Spaces';
 
 class GetSpaces extends React.Component {
-    componentDidMount() {
+    componentWillMount() {
         this.props.getSpaces( this.props.session );
     }
 

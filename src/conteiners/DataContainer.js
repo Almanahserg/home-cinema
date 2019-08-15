@@ -4,7 +4,8 @@ import {
     actionGetMovies,
     actionGetSessions
 } from '../actions/actionGetData';
-import { Cinema } from '../routes/index';
+import Cinema from '../routes/index';
+
 
 class GetData extends React.Component {
     componentWillMount() {
@@ -13,12 +14,12 @@ class GetData extends React.Component {
     }
 
     render() {
-        const { movies, sessions} = this.props;
+        const {movies, sessions} = this.props;
         return (
             <div>
                 <Cinema
-                    movies={movies}
-                    sessions={sessions}
+                    movies={ movies }
+                    sessions={ sessions }
                 />
             </div>
         );

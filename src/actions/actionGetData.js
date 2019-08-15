@@ -10,7 +10,8 @@ import {
     SESSIONS_RESOLVE,
     SPACES_REJECT,
     SPACES_RESOLVE,
-    LOADING, URL_SPACES
+    LOADING,
+    URL_SPACES
 } from '../constants';
 import axios from 'axios';
 
@@ -19,13 +20,13 @@ const rooms = [ROOMS_RESOLVE, ROOMS_REJECT];
 const sessions = [SESSIONS_RESOLVE, SESSIONS_REJECT];
 const spaces = [SPACES_RESOLVE, SPACES_REJECT];
 
-export const actionPanding = () => ({type: LOADING});
+export const actionPending = () => ({type: LOADING});
 export const actionResolve = (payload, array) => ({type: array[0], payload});
 export const actionReject = (array) => ({type: array[1]});
 
 export const actionGetMovies = () => {
     return dispatch => {
-        dispatch( actionPanding() );
+        dispatch( actionPending() );
 
         axios.get( URL_MOVIES )
             .then( ({data}) => {
@@ -40,7 +41,7 @@ export const actionGetMovies = () => {
 
 export const actionGetRooms = () => {
     return dispatch => {
-        dispatch( actionPanding() );
+        dispatch( actionPending() );
 
         axios.get( URL_ROOMS )
             .then( ({data}) => {
@@ -55,7 +56,7 @@ export const actionGetRooms = () => {
 
 export const actionGetSessions = () => {
     return dispatch => {
-        dispatch( actionPanding() );
+        dispatch( actionPending() );
 
         axios.get( URL_SESSIONS )
             .then( ({data}) => {
@@ -70,7 +71,7 @@ export const actionGetSessions = () => {
 
 export const actionGetSpaces = (params) => {
     return dispatch => {
-        dispatch( actionPanding() );
+        dispatch( actionPending() );
 
         axios.get(`${URL_SPACES}?session=${params}` )
             .then( ({data}) => {

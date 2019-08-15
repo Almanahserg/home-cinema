@@ -2,6 +2,7 @@
     outline: none;
     margin: 0;
     padding: 0;
+    user-select: none;
 }
 
 html, body {
@@ -37,4 +38,16 @@ p {
 hr {
     border: none;
     border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.submitButton {
+    margin: 5px 0;
+    border: 2px solid white;
+    border-radius: 5px;
+    color: white;
+    background-color: red;
+    padding: 10px 15px;
+    box-shadow: 0 0 5px black;
+    cursor: pointer;
+    text-align: center;
 }

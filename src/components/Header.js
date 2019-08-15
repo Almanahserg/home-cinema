@@ -29,7 +29,7 @@ const Header = () => {
                     <Img src={ logo } alt="logo"/>
                 </Link>
                 <Menu activeMenu={activeMenu} changeActiveMenu={setActiveMenu}/>
-                <Authorization/>
+                <Authorization activeMenu={activeMenu} changeActiveMenu={setActiveMenu}/>
             </Container>
         </header>
     )

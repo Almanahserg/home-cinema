@@ -7,7 +7,3 @@ const composeEnchancers = (window && window['__REDUX_DEVTOOLS_EXTENSION_COMPOSE_
 
 export let store = createStore( rootReducer, composeEnchancers(applyMiddleware( thunk )));
 export const history = createBrowserHistory();
-
-export let UserInfo = {
-    label: "Личный кабинет"
-};

@@ -24,20 +24,19 @@ const StyledLink = styled.div`
 `;
 
 export const Menu = (props) => {
-
     return (
         <List>
             <li>
                 <Link to='/movies'>
                     <StyledLink
-                        onClick={ () => props.changeActiveMenu(1) }
+                        onClick={ () => props.changeActiveMenu( 1 ) }
                         active={ props.activeMenu === 1 ? true : false }>Фильмы</StyledLink>
                 </Link>
             </li>
             <li>
                 <Link to='/contacts'>
                     <StyledLink
-                        onClick={ () => props.changeActiveMenu(2) }
+                        onClick={ () => props.changeActiveMenu( 2 ) }
                         active={ props.activeMenu === 2 ? true : false }>Контакты</StyledLink>
                 </Link>
             </li>
