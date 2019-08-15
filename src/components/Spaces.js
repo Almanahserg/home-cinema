@@ -3,6 +3,8 @@ import ReactDOM from 'react-dom';
 import styled from 'styled-components';
 import Cinema from "../contexts/Cinema";
 import { MONTHS_RU } from '../constants';
+import { useCookies } from "react-cookie";
+
 
 const ModalTag = styled.div`
     position: fixed;
@@ -107,7 +109,7 @@ const Place = styled.div`
     ` }
 `;
 
-const ByButton = styled.div`
+const BuyButton = styled.div`
     margin: 5px 0;
     border: 2px solid white;
     border-radius: 5px;
@@ -133,12 +135,12 @@ export const Spaces = (props) => {
     const movie = useContext( Cinema ).movies.filter( (item) => (item._id === props.movie.movie) );
     const session = useContext( Cinema ).sessions.filter( (item) => (item._id === props.movie.session) );
     const [bookedPlaces, setBookedPlaces] = useState( [] );
+    const [cookies, setCookie] = useCookies( ['user', 'tickets'] );
 
-    document.querySelector( 'body' ).appendChild( modalRoot );
-
-    useEffect(() => {
+    useEffect( () => {
+        document.querySelector( 'body' ).appendChild( modalRoot );
         return () => modalRoot.remove()
-    }, []);
+    }, [] );
 
 
     let searchingPlaceId = (item) => {
@@ -165,18 +167,18 @@ export const Spaces = (props) => {
     };
 
     const dateFormat = () => {
-        let date = new Date(session[0].date);
+        let date = new Date( session[0].date );
         let month = date.getMonth();
         let day = date.getDate();
         let HH = ('0' + date.getHours()).slice( -2 );
         let MM = ('0' + date.getMinutes()).slice( -2 );
 
-        return(
-            <div style={{marginTop: '20px'}}>
-                {'Начало сеанса:'}
-                <div>месяц - <b>{MONTHS_RU[month]}</b></div>
-                <div>число - <b>{day}</b></div>
-                <div>время - <b>{HH}:{MM}</b></div>
+        return (
+            <div style={ {marginTop: '20px'} }>
+                { 'Начало сеанса:' }
+                <div>месяц - <b>{ MONTHS_RU[month] }</b></div>
+                <div>число - <b>{ day }</b></div>
+                <div>время - <b>{ HH }:{ MM }</b></div>
             </div>
         )
     };
@@ -188,39 +190,42 @@ export const Spaces = (props) => {
                     <CloseButton onClick={ props.hideModal }>{ "\u2715" }</CloseButton>
                     <InformBoard>
                         <MovieInfo>
-                            <h2>{movie[0].title}</h2>
-                            <div>{dateFormat()}</div>
+                            <h2>{ movie[0].title }</h2>
+                            <div>{ dateFormat() }</div>
                             <br/>
                             <br/>
-                            <div style={{display: 'flex', marginBottom: '5px'}}>
-                                <div style={{
+                            <div style={ {display: 'flex', marginBottom: '5px'} }>
+                                <div style={ {
                                     height: '18px',
                                     width: '18px',
                                     borderRadius: '5px',
                                     backgroundColor: 'red',
                                     border: '1px solid red'
-                                }}/>
-                                <span style={{marginLeft:'5px'}}>- место занято</span>
+                                } }/>
+                                <span style={ {marginLeft: '5px'} }>- место занято</span>
                             </div>
-                            <div style={{display: 'flex'}}>
-                                <div style={{
+                            <div style={ {display: 'flex'} }>
+                                <div style={ {
                                     height: '18px',
                                     width: '18px',
                                     borderRadius: '5px',
                                     backgroundColor: 'white',
                                     border: '1px solid red'
-                                }}/>
-                                <span style={{marginLeft:'5px'}}>- место свободно</span>
+                                } }/>
+                                <span style={ {marginLeft: '5px'} }>- место свободно</span>
                             </div>
                         </MovieInfo>
                         <MovieImg bg={ movie[0].poster }/>
-                        <MovieInfo style={{textAlign: 'right'}}>
+                        <MovieInfo style={ {textAlign: 'right'} }>
                             { bookedPlaces.length > 0
                                 ? bookedPlaces.map( (elem, index) => (
                                     <div key={ index }>{ `ряд ${ elem.row }, место ${ elem.place }` }</div>
                                 ) )
                                 : '' }
-                            { bookedPlaces.length > 0 && <ByButton>Купить</ByButton> }
+                            { bookedPlaces.length > 0 &&
+                            <BuyButton
+                                onClick={ () => buyTickets( bookedPlaces, movie[0], dateFormat(), cookies.user, setCookie )
+                                }>Купить</BuyButton> }
                         </MovieInfo>
                     </InformBoard>
                     <CinemaHall size={ props.spaces.count }>{
@@ -245,9 +250,7 @@ export const Spaces = (props) => {
                                 </div>
                             )
                         )
-
                     }</CinemaHall>
-
                 </Content>
             </ModalTag>,
             modalRoot
@@ -271,4 +274,21 @@ const sortingPlaces = (items) => {
     } );
 
     return cinemaArray;
+};
+
+const buyTickets = (tickets, movie, session, user, setCookie) => {
+    let spaces = tickets.map( elem => `ряд ${ elem.row }, место ${ elem.place }` );
+    let obj = {
+        movie,
+        spaces
+    };
+
+    setCookie ('tickets', obj);
+
+    if(user !== 'undefined') {
+        alert( 'Покупка успешно завершена.\nВсе купленные билеты можете посмотреть в личном кабинете.');
+    } else {
+        alert( 'Для покупки билетов вам необходимо авторизоваться на сайте.' );
+    }
+
 };

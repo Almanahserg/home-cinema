@@ -7,11 +7,15 @@ import { MoviesPage } from '../components/MoviesPage'
 import { Movie } from '../components/Movie';
 import { ContactsPage } from '../components/Contacts';
 import { CinemaProvider } from '../contexts/Cinema';
+import { UserPage } from "../components/UserPage";
+import { useCookies } from "react-cookie";
 
+const Cinema = (props) => {
+    const [cookies] = useCookies( ['user'] );
+    const cinema = {...props, cookies};
 
-export const Cinema = (props) => {
     return (
-        <CinemaProvider value={ props }>
+        <CinemaProvider value={ cinema }>
             <BrowserRouter>
                 <Header/>
                 <div className='main'>
@@ -20,6 +24,7 @@ export const Cinema = (props) => {
                         <Route path='/movies' component={ MoviesPage }/>
                         <Route path='/movie_:movieId' component={ Movie }/>
                         <Route path='/contacts' component={ ContactsPage }/>
+                        <Route path='/user' component={ UserPage }/>
                     </Switch>
                 </div>
                 <Footer/>
@@ -27,3 +32,5 @@ export const Cinema = (props) => {
         </CinemaProvider>
     )
 };
+
+export default Cinema

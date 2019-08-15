@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import { MONTHS_RU } from '../constants';
-import { SpacesData } from '../conteiners/GettingSpaces'
+import { SpacesData } from '../conteiners/SpacesContainer'
 
 const Div = styled.div`
     margin: 5px 0;
@@ -106,8 +106,6 @@ class Sessions extends React.Component {
     }
 
     render() {
-        console.log(this.state.showModal);
-
         if(this.state.times.length === 0) {
             return (
                 <div>Сеансов на данный фильм нет</div>

@@ -4,13 +4,15 @@ import { store } from './store';
 import { Provider } from 'react-redux';
 import './App.css';
 import './index.css';
-import { Data } from "./conteiners/GettingData";
+import { Data } from "./conteiners/DataContainer";
+import { CookiesProvider } from 'react-cookie';
 
 ReactDOM.render(
     <Provider store={ store }>
-        <div className="App">
-            <Data/>
-        </div>
+        <CookiesProvider>
+            <div className="App">
+                <Data/>
+            </div>
+        </CookiesProvider>
     </Provider>,
-
     document.getElementById( 'root' ) );
